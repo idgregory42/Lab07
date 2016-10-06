@@ -22,14 +22,12 @@ class QueueDeque
 
 		bool isEmpty();
 		int size();
+		
 		void dequeueAll(); 
-
+		void enqueue(T* item);
+		
 		T* peek();
 		T* dequeue();
-		void enqueue(T* item);
-	
-	
-	
 };
 
 template < class T >
@@ -47,7 +45,7 @@ QueueDeque<T>::~QueueDeque()
 template < class T >
 bool QueueDeque<T>::isEmpty()
 {
-	return size() == 0;
+	return dqA->isEmpty();
 }
 
 template < class T >
@@ -79,7 +77,5 @@ void QueueDeque<T>::enqueue(T* item)
 {
 	dqA->enqueue(item);
 }
-
-
 
 #endif

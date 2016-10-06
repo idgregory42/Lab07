@@ -55,6 +55,7 @@ int String::compare(String* other)
 
 void String::displayString()
 {
+ 
    cout << text;
 }
 

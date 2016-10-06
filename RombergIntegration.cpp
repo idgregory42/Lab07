@@ -1,24 +1,43 @@
 #include "RombergIntegration.h"
 #include "RecursiveIntegration.h"
 #include "QueueLinked.h"
+
 #include "CSC2110/Double.h"
 using CSC2110::Double;
-#include <iostream>
-using namespace std;
+#include "CSC2110/Valtostr.h"
+using CSC2110::Valtostr;
+#include "CSC2110/Text.h"
+using CSC2110::String;
+
 #include <math.h>
 
 //a is the lower limit and b is the upper limit
 double RombergIntegration::accurateRomberg(MultiVarFunction* f, double a, double b, int level)
 {
    Double* db;  //use this variable to place and retrieve values on the queue
- 
+   String* debugStr;
+   String* val;
+   String* end_line = new String("\n");
+   String* alrm = new String("\a");
+   Valtostr* iVal = new Valtostr();
    QueueLinked<Double>* q1 = new QueueLinked<Double>();
    QueueLinked<Double>* q2 = new QueueLinked<Double>();
 
 
    int counter = 0;
    int n = 1;  //current number of intervals
-   cout << "\n**Level: " << level << endl;
+   
+   alrm->displayString();
+   
+   //
+   debugStr = new String("\n**Level: ");
+   debugStr->displayString();
+   val = new String(iVal->i_to_c(level));
+   val->displayString();
+   //
+   
+   end_line->displayString();   
+   
    while (counter <= level )
    {
       //DO THIS
@@ -42,10 +61,25 @@ double RombergIntegration::accurateRomberg(MultiVarFunction* f, double a, double
 
    //DO THIS
    int iterations = counter - 1;         //can be precomputed
-   cout <<"\n** 69" << endl;
+
+   
+   debugStr = new String("\n** 69");
+   debugStr->displayString();
+   end_line->displayString();
+   
    int sz = q1->size();
-   cout << "\n** Size:"<<sz << endl;
-   cout << "\n\a" << endl;
+   
+
+   
+   debugStr = new String("\n** Size:");
+   debugStr->displayString();
+   val = new String(iVal->i_to_c(sz));
+   val->displayString();
+   end_line->displayString();
+   end_line->displayString();
+   
+
+   
    while(iterations > 0)
    {
       //DO THIS
@@ -94,6 +128,10 @@ double RombergIntegration::accurateRomberg(MultiVarFunction* f, double a, double
    delete db;
    delete q1;
    delete q2;
-
+   delete alrm;
+   delete end_line;
+   delete debugStr;
+   delete val;
+   delete iVal;
    return result;
 }

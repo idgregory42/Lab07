@@ -2,7 +2,6 @@
 #define NULL 0
 #endif
 
-
 #if !defined (STACKDEQUE_H)
 #define STACKDEQUE_H
 
@@ -25,6 +24,7 @@ class StackDeque
 		bool isEmpty();
 		
 		T* peek();
+		
 		T* pop();
 		
 		void popAll();
@@ -40,7 +40,7 @@ StackDeque<T>::StackDeque()
 template < class T >
 StackDeque<T>::~StackDeque()
 {
-	delete dqA;
+	delete[] dqA;
 }
 
 template < class T >
@@ -52,7 +52,7 @@ int StackDeque<T>::size()
 template < class T >
 bool StackDeque<T>::isEmpty()
 {
-	return size() == 0;  
+	return dqA->isEmpty();  
 }
 
 template < class T >
@@ -70,7 +70,7 @@ T* StackDeque<T>::pop()
 template < class T >
 void StackDeque<T>::popAll()
 {
-	 
+	dqA->dequeueAll(); 
 }
 
 template < class T >

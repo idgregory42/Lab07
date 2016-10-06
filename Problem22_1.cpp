@@ -1,9 +1,13 @@
 #include "Problem22_1.h"
 #include "RombergIntegration.h"
 #include "RecursiveIntegration.h"
+#include "CSC2110/Keywait.h"
+using CSC2110::Keywait;
+#include "CSC2110/Valtostr.h"
+using CSC2110::Valtostr;
+#include "CSC2110/Text.h"
+using CSC2110::String;
 
-#include <iostream>
-using namespace std;
 #include <math.h>
 
 Problem22_1::Problem22_1() 
@@ -41,25 +45,55 @@ void Problem22_1::setUpperLimit(double b)
 int main()
 {
    Problem22_1* p = new Problem22_1();  //mean = 10.5, variance = 5.7
-   cout << "1" << endl;
+ 
    //lower limits
    p->setLowerLimit(1.0);
    p->setUpperLimit(2.0);
-
-   double result;
+   
+   String* res;
+   String* num_res;
+   String* end_line = new String("\n");
+   Valtostr* d2a = new Valtostr();
+   
+   double result = 0.0;
 
    result = p->integrate(0);
-   cout << "The area under the curve using accurate Romberg level 0: " << result << endl;
-
+   res = new String("The area under the curve using accurate Romberg level 0: ");
+   res->displayString();
+   num_res = new String(d2a->d_to_c(result));
+   num_res->displayString();
+   end_line->displayString();
+   
    result = p->integrate(1);
-   cout << "The area under the curve using accurate Romberg level 1: " << result << endl;
+   res = new String("The area under the curve using accurate Romberg level 1: ");
+   res->displayString();
+   num_res = new String(d2a->d_to_c(result));
+   num_res->displayString();
+   end_line->displayString();   
+   
+   result = p->integrate(2);   
+   res = new String("The area under the curve using accurate Romberg level 2: ");
+   res->displayString();
+   num_res = new String(d2a->d_to_c(result));
+   num_res->displayString();
+   end_line->displayString();   
+   
+   
+   result = p->integrate(3);  
+   res = new String("The area under the curve using accurate Romberg level 3: ");
+   res->displayString();
+   num_res = new String(d2a->d_to_c(result));
+   num_res->displayString();
+   end_line->displayString();  
+   
+   Keywait* kw = new Keywait();
+   kw->waitForKey();
+   
 
-   result = p->integrate(2);
-   cout << "The area under the curve using accurate Romberg level 2: " << result << endl;
-
-   result = p->integrate(3);
-   cout << "The area under the curve using accurate Romberg level 3: " << result << endl;
-   system("pause");
+   delete res;
+   delete num_res;
+   delete end_line;
+   delete d2a;
    delete p;
    return 0;
 }
